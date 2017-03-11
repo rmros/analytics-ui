@@ -1,0 +1,247 @@
+table {
+    width: 100%;
+}
+
+body {
+    font-family: "Roboto";
+}
+
+ul {
+    list-style-type: none;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.header {
+    padding: 20px
+}
+
+#logo {
+    margin-left: 50px;
+    border-radius: 10%
+}
+
+.logo {
+    padding: 5px;
+    padding-top: 8px;
+}
+
+.side-menu-items {
+    text-align: justify;
+    cursor: pointer;
+    color: #549afc;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.side-menu-items:active {
+    cursor: pointer;
+    color: #5a5757;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.side-menu-heading {
+    font-weight: 500;
+    padding: 5px;
+    font-size: 17px;
+}
+
+.navbar-style {
+    background: white;
+}
+
+.navbar-border {
+    border-bottom: 1px solid rgba(84, 154, 252, 0.23);
+}
+
+.app-items:hover {
+    background: white
+}
+
+.profile-icon {
+    font-size: 25px;
+}
+
+.footer-item {
+    font-size: 12px;
+}
+
+.below-navbar {
+    border-bottom: 1px solid #d2cdcd;
+    margin-bottom: 10px
+}
+
+.side-item-selected {
+    background-color: #ececec;
+    color: black;
+    border-radius: 3px;
+    margin-right: 15px
+}
+
+.dashboard-menuitem {
+    padding-top: 3px;
+}
+
+.appid-menuitem {
+    padding-top: 3px;
+}
+
+.dashboard-icon {
+    font-size: medium
+}
+
+.profilePic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.selected-app {
+    background: #e8e8e8;
+    border-radius: 3px;
+    margin-left: 1px;
+    margin-right: 1px
+}
+
+.myApps-heading {
+    padding: 5px;
+    background: #e8e8e8;
+    text-align: center;
+    margin-top: -5px;
+    cursor: default;
+}
+
+.top-menu-item {
+    background: #aac7e8;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.mainbody {
+    margin-top: 10px;
+}
+
+
+/*
+segmentation styling
+*/
+
+.segmentation-details {
+    border-radius: 5px;
+}
+
+.segmentation-details-header {
+    padding: 10px;
+    background: #e6e6e6;
+}
+
+.segmentation-details-body {
+    padding: 20px 20px 50px 20px;
+}
+
+.segmentation-details-by-label {
+    background: darkgrey;
+    position: absolute;
+    padding: 5px 30px;
+    margin-left: 10px;
+}
+
+.segmentation-details-show-btn {
+    margin-left: 80%;
+}
+
+.segmentation-details-footer {
+    padding: 10px;
+    background: #e6e6e6;
+}
+
+.segmentation-chart {
+    border-radius: 5px;
+    height: 500px;
+}
+
+.segmentation-data {
+    border-radius: 5px;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.segmentation-data-table-heading {
+    background: #dcd7d7;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.segmentation-data-table-data {
+    border-right: 1px solid;
+    border-left: 1px solid;
+    padding: 5px;
+}
+
+
+/*
+segementation styling ends
+*/
+
+
+/*
+funnel styling
+*/
+
+.funnel-details {
+    background: #e8e6e6;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.funnel-details-edit-icon {
+    margin-left: 10px;
+}
+
+.funnel-chart {
+    border-radius: 5px;
+    height: 500px;
+    margin-bottom: 70px;
+}
+
+.funnel-data {
+    border-radius: 5px;
+}
+
+.funnel-data-table {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.funnel-data-table-heading {
+    background: #dcd7d7;
+    border: 1px solid;
+    padding: 5px;
+}
+
+.funnel-data-table-data {
+    border-right: 1px solid;
+    border-left: 1px solid;
+    padding: 5px;
+}
+
+.funnel-data-overview-span {
+    background: #e8e6e6;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+/*
+funnel styling ends
+*/
+
+.dropdown-menu {
+    height: 200px;
+    overflow-y: scroll;
+}
