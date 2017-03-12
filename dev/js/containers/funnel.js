@@ -14,11 +14,7 @@ class Funnel extends Component {
 
     }
     componentDidMount() {
-        $('#funnel-event-dropdown').text('Select Event');
 
-        $('.funnel-event-list-item').click(function() {
-            $('#funnel-event-dropdown').text($(this).text());
-        })
         var ctx = $("#funnelChart");
         var myChart = new Chart(ctx, {
             type: 'bar',
