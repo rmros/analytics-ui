@@ -22,7 +22,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
         <Route path="/" component={App}></Route>
         <Route path="/:appId" component={App}>
-            <IndexRoute component={Segmentation}/>
+            <IndexRoute component={LiveView}/>
             <Route path="segmentation" component={Segmentation}></Route>
             <Route path="funnel" component={Funnel}></Route>
             <Route path="live" name="live" component={LiveView}></Route>

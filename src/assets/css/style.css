@@ -241,7 +241,61 @@ funnel styling
 funnel styling ends
 */
 
+
+/*
+LiveView Styling
+*/
+
+.panel-default>.panel-heading {
+    background-image: -webkit-linear-gradient(top, #ffffff 0, #ffffff 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0, #ffffff 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+}
+
+.panel-default {
+    border-color: white
+}
+
+.liveview-property-name {
+    color: #6f6f6f;
+}
+
+.liveview-property-value {
+    font-weight: bold;
+    padding-left: 5px;
+    color: #6f6f6f;
+}
+
+.col-hidden {
+    display: none!important;
+}
+
+.liveview-table {}
+
+.liveview-table-data {
+    border-left: none!important;
+    border-right: none!important;
+    padding: 10px!important;
+}
+
+.liveview-inner-table {}
+
+.liveview-inner-table-data {
+    border-left: none!important;
+    border-right: none!important;
+    padding: 10px!important;
+}
+
+
+/*
+LiveView Styling ends
+*/
+
 .dropdown-menu {
     height: 200px;
     overflow-y: scroll;
+}
+
+oll;
+
 }

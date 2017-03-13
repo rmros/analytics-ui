@@ -3,6 +3,8 @@ var Express = require('express');
 var app = Express();
 
 app.use('/', Express.static(path.join(__dirname, 'src')));
+app.use('/node_modules', Express.static(path.join(__dirname, 'node_modules')));
+
 app.get('/app/key.js', function(req, res) {
     res.setHeader('Content-type', 'text/plain');
     res.charset = 'UTF-8';
