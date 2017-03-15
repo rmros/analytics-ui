@@ -19,11 +19,11 @@ app.get('/app/key.js', function(req, res) {
     content += "ACCOUNTS_URL = null,\n";
     content += "ANALYTICS_URL = null,\n";
     content += "LANDING_URL = 'https://www.cloudboost.io';\n";
-    content += "if(window.location.hostname === 'beta-analytics.cloudboost.io'){\n";
+    content += "if(window.location.hostname === 'analytics.cloudboost.io'){\n";
     content += "USER_SERVICE_URL='https://service.cloudboost.io/';\n";
     content += "SERVER_DOMAIN='cloudboost.io';\n";
     content += "SERVER_URL='https://api.cloudboost.io';\n";
-    content += "ANALYTICS_URL='https://beta-analytics.cloudboost.io/';\n";
+    content += "ANALYTICS_URL='https://analytics.cloudboost.io/';\n";
     content += "DASHBOARD_URL='https://dashboard.cloudboost.io';\n";
     content += "ACCOUNTS_URL='https://accounts.cloudboost.io';\n";
     content += "}else{\n";

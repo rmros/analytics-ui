@@ -213,10 +213,11 @@ funnel styling
     border-radius: 5px;
 }
 
-.funnel-data-table {
+
+/*.funnel-data-table {
     height: 200px;
     overflow-y: scroll;
-}
+}*/
 
 .funnel-data-table-heading {
     background: #dcd7d7;
@@ -234,6 +235,92 @@ funnel styling
     background: #e8e6e6;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+.funnel-close-icon {
+    color: red;
+}
+
+.funnel-close-icon:hover {
+    color: red;
+}
+
+.funnel-date-range-selector {
+    background: #e8e6e6;
+    margin-top: 5px;
+    padding: 5px 0 10px 10px;
+}
+
+.funnel-date-range {
+    display: none;
+}
+
+.date-range-field {
+    padding: 3px;
+    border-radius: 4px;
+    background: #efefef;
+    margin-right: 10px;
+    margin-top: 5px;
+    border: 1px solid #c3c3c3;
+}
+
+.blue-border {
+    border: 2px solid #4f9cf5;
+}
+
+.funnel-done-btn {
+    display: none;
+}
+
+.funnel-completion-percentage {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.funnel-completion-percentage-text {
+    font-size: 10px;
+}
+
+.delete-btn-modal {
+    background: #D60A00;
+}
+
+.delete-btn-modal:hover {
+    background: #D60A00;
+}
+
+.delete-modal-body {
+    text-align: center;
+    padding: 30px;
+    font-family: Signika;
+    color: #585858;
+    font-size: large;
+}
+
+.delete-modal-header-style {
+    color: white;
+    background: #D60A00;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-family: Signika;
+}
+
+.delete-modal-icon-style {
+    border-radius: 50%;
+    background: #9b0601;
+    font-size: 30px;
+    width: 60px;
+    padding: 15px;
+}
+
+.modal-title {
+    font-size: 20px;
+}
+
+.modal-title-inner-text {
+    font-size: 14px;
+    font-weight: normal;
+    font-family: Signika;
 }
 
 
@@ -296,6 +383,20 @@ LiveView Styling ends
     overflow-y: scroll;
 }
 
-oll;
 
+/*
+CreateFunnel Styling
+*/
+
+.cf-heading {
+    background: #e8e6e6;
+    padding: 10px;
+    color: grey;
+    font-size: 20px;
+    border-radius: 5px
 }
+
+
+/*
+CreateFunnel Styling ends
+*/
