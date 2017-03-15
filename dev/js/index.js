@@ -28,5 +28,7 @@ ReactDOM.render(
             <Route path="live" name="live" component={LiveView}></Route>
             <Route path="funnel/create" component={CreateFunnel}></Route>
         </Route>
+        <Route path="*" component={App}/>
+
     </Router>
 </Provider>, document.getElementById('root'));

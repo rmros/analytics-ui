@@ -389,11 +389,22 @@ CreateFunnel Styling
 */
 
 .cf-heading {
-    background: #e8e6e6;
+    background: #f5f5f5;
     padding: 10px;
     color: grey;
     font-size: 20px;
     border-radius: 5px
+}
+
+.funnelStep {
+    margin-top: 20px;
+}
+
+.fs-heading {
+    background: #f5f5f5;
+    border-radius: 5px;
+    padding: 10px;
+    color: grey;
 }
 
 
