@@ -1,5 +1,5 @@
 #
-# CloudBoost File-Ui Dockerfile
+# CloudBoost Analytics-Ui Dockerfile
 #
 
 # Pull base image nodejs image.
@@ -17,8 +17,8 @@ WORKDIR /opt/app
 ADD . /opt/app
 
 # Expose ports.
-#   - 3012: CloudBoost File-ui
-EXPOSE 3012
+#   - 3013: CloudBoost Analytics-ui
+EXPOSE 3013
 
 #Run the app
 CMD [ "node", "server.js" ]

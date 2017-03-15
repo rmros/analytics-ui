@@ -33,10 +33,9 @@ class SideBar extends Component {
                             <i class="ion ion-funnel"></i>
                             &nbsp;&nbsp;Funnel
                         </li>
-                        <li class="side-menu-items">
-                            <Link to="live">
-                                <i class="ion ion-ios-pulse-strong"></i>
-                                &nbsp;&nbsp;Live View</Link>
+                        <li class="side-menu-items" onClick={this.navigate.bind(this, 'live')}>
+                            <i class="ion ion-ios-pulse-strong"></i>
+                            &nbsp;&nbsp;Live View
                         </li>
 
                     </ul>
