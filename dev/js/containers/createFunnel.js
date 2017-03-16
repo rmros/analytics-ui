@@ -21,6 +21,9 @@ class CreateFunnel extends Component {
                 <div class="cf-body">
                     <input class="form-control" placeholder="Enter funnel name"/>
                     <FunnelStep/>
+                    <FunnelStep/>
+                    <FunnelStep/>
+                    <FunnelStep/>
                 </div>
 
             </div>

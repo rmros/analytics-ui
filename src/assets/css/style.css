@@ -407,6 +407,55 @@ CreateFunnel Styling
     color: grey;
 }
 
+.fs-close-icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.fs-select-event {
+    background: url('../img/search_icon.png'), url('../img/down_icon.png');
+    background-position: left, right;
+    background-repeat: no-repeat;
+    padding-left: 27px;
+    width: 200px;
+    display: inline;
+}
+
+.fs-select-property {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline;
+    width: 200px;
+}
+
+.fs-select-value {
+    margin-left: 10px;
+    display: inline;
+    width: 200px;
+}
+
+.fs_right_icon {
+    color: #4f9cf5;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 0px 5px 0px 6px;
+    border-color: #cccaca;
+    margin-left: 10px;
+}
+
+.fs-selection-row {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+/*remove datalist caret*/
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
 
 /*
 CreateFunnel Styling ends

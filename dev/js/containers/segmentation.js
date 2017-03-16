@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Glyphicon, ButtonGroup, DropdownButton, MenuItem} from 'react-bootstrap';
+import {ButtonGroup, DropdownButton, MenuItem} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
