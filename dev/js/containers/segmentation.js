@@ -3,6 +3,8 @@ import {ButtonGroup, DropdownButton, MenuItem} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
+import QueryStep from '../elements/queryStep.js';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 class Segementation extends Component {
     constructor(props) {
@@ -94,6 +96,152 @@ class Segementation extends Component {
 
     }
     render() {
+        const tableData = [
+            {
+                distinctId: 1,
+                event: "Visited : Home Page",
+                browser: 'Chrome',
+                city: "New Delhi",
+                country: "India",
+                time: "13 min. ago",
+                expand: [
+                    {
+                        fieldA: 'browser : Chrome',
+                        fieldB: 'OS : MAC OS X',
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }, {
+                distinctId: 2,
+                event: "Visited : Sign Up Page",
+                browser: 'Firefox',
+                city: "New Delhi",
+                country: "India",
+                time: "11 min. ago",
+                expand: [
+                    {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }, {
+                distinctId: 3,
+                event: "Visited : Pricing Page",
+                browser: 'Safari',
+                city: "New Delhi",
+                country: "India",
+                time: "13 min. ago",
+                expand: [
+                    {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }, {
+                distinctId: 4,
+                event: "Visited : Consulting Page",
+                browser: 'Edge',
+                city: "New Delhi",
+                country: "India",
+                time: "1 day ago",
+                expand: [
+                    {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }, {
+                distinctId: 5,
+                event: "Visited : Compare Page",
+                browser: 'IE',
+                city: "New Delhi",
+                country: "India",
+                time: "3 sec. ago",
+                expand: [
+                    {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }, {
+                distinctId: 6,
+                event: "Visited : Home Page",
+                browser: 'Chrome',
+                city: "New Delhi",
+                country: "India",
+                time: "5 min. ago",
+                expand: [
+                    {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }, {
+                distinctId: 7,
+                event: "Visited : Home Page",
+                browser: 'unknown',
+                city: "New Delhi",
+                country: "India",
+                time: "13 min. ago",
+                expand: [
+                    {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }, {
+                        fieldA: 'test1',
+                        fieldB: 99,
+                        fieldC: Math.random() * 100,
+                        fieldD: '123eedd'
+                    }
+                ]
+            }
+        ];
+        const options = {
+            noDataText: 'No Events Found!!'
+        }
 
         return (
             <div>
@@ -115,7 +263,9 @@ class Segementation extends Component {
                         </ButtonGroup>
                     </div>
                     <div class="segmentation-details-body">
-                        <span class="segmentation-details-by-label">By</span>
+                        <span class="segmentation-details-by-label col-md-1">By</span><br/>
+                        <br></br>
+                        <QueryStep/><QueryStep/><QueryStep/><QueryStep/>
                     </div>
                     <div class="segmentation-details-footer">
                         <button class="btn btn-info segmentation-details-show-btn">Show</button>
@@ -125,55 +275,14 @@ class Segementation extends Component {
                     <canvas id="segmentationChart" width="400" height="400"></canvas>
                 </div>
                 <div class="segmentation-data">
-                    <table class="table table-striped header-fixed">
-                        <thead>
-                            <tr>
-                                <td class="segmentation-data-table-heading">City</td>
-                                <td class="segmentation-data-table-heading">Today</td>
-                                <td class="segmentation-data-table-heading">Wed, Mar 8</td>
-                                <td class="segmentation-data-table-heading">Wed, Mar 1</td>
-                                <td class="segmentation-data-table-heading">Wed, Feb 22</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="segmentation-data-table-data">Delhi</td>
-                                <td class="segmentation-data-table-data">0</td>
-                                <td class="segmentation-data-table-data">8</td>
-                                <td class="segmentation-data-table-data">1.4</td>
-                                <td class="segmentation-data-table-data">2</td>
-                            </tr>
-                            <tr>
-                                <td class="segmentation-data-table-data">Delhi</td>
-                                <td class="segmentation-data-table-data">0</td>
-                                <td class="segmentation-data-table-data">8</td>
-                                <td class="segmentation-data-table-data">1.4</td>
-                                <td class="segmentation-data-table-data">2</td>
-                            </tr>
-                            <tr>
-                                <td class="segmentation-data-table-data">Delhi</td>
-                                <td class="segmentation-data-table-data">0</td>
-                                <td class="segmentation-data-table-data">8</td>
-                                <td class="segmentation-data-table-data">1.4</td>
-                                <td class="segmentation-data-table-data">2</td>
-                            </tr>
-                            <tr>
-                                <td class="segmentation-data-table-data">Delhi</td>
-                                <td class="segmentation-data-table-data">0</td>
-                                <td class="segmentation-data-table-data">8</td>
-                                <td class="segmentation-data-table-data">1.4</td>
-                                <td class="segmentation-data-table-data">2</td>
-                            </tr>
-                            <tr>
-                                <td class="segmentation-data-table-data">Delhi</td>
-                                <td class="segmentation-data-table-data">0</td>
-                                <td class="segmentation-data-table-data">8</td>
-                                <td class="segmentation-data-table-data">1.4</td>
-                                <td class="segmentation-data-table-data">2</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                    <BootstrapTable data={tableData} options={options} hover expandableRow={this.isExpandableRow} expandComponent={this.expandComponent} search={true} trClassName='liveview-table'>
+                        <TableHeaderColumn dataField='event' dataSort={true} columnClassName="liveview-table-data">Event</TableHeaderColumn>
+                        <TableHeaderColumn dataField='time' dataSort={true} columnClassName="liveview-table-data">Time</TableHeaderColumn>
+                        <TableHeaderColumn dataField='browser' dataSort={true} columnClassName="liveview-table-data">Browser</TableHeaderColumn>
+                        <TableHeaderColumn dataField='city' dataSort={true} columnClassName="liveview-table-data">City</TableHeaderColumn>
+                        <TableHeaderColumn dataField='country' dataSort={true} columnClassName="liveview-table-data">Country</TableHeaderColumn>
+                        <TableHeaderColumn dataField='distinctId' dataSort={true} isKey={true} columnClassName="liveview-table-data">Distinct Id</TableHeaderColumn>
+                    </BootstrapTable>
                 </div>
 
             </div>
