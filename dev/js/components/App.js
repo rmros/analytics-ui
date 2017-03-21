@@ -178,4 +178,4 @@ function matchDispatchToProps(dispatch) {
         initApp: initApp
     }, dispatch);
 }
-export default connect(mapStateToProps, matchDispatchToProps)(App);;
+export default connect(mapStateToProps, matchDispatchToProps)(App);
