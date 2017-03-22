@@ -24,3 +24,16 @@ $('.funnel-done-btn').click(function() {
     $('.funnel-done-btn').toggle();
 
 });
+$('.segmentation-date-range-field').click(function() {
+    $('.segmentation-date-range').toggle();
+    $('.segmentation-done-btn').toggle();
+    $('#segmentationChart').toggle();
+    $('.segmentation-date-range-field').toggleClass('blue-border');
+});
+$('.segmentation-done-btn').click(function() {
+    $('.segmentation-date-range').toggle();
+    $('#segmentationChart').toggle();
+    $('.segmentation-date-range-field').toggleClass('blue-border');
+    $('.segmentation-done-btn').toggle();
+
+});

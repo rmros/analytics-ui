@@ -137,15 +137,15 @@ segmentation styling
 
 .segmentation-details-header {
     padding: 10px;
-    background: #e6e6e6;
+    background: #d8e0e6;
 }
 
 .segmentation-details-body {
-    padding: 20px 20px 50px 20px;
+    padding: 20px;
 }
 
 .segmentation-details-by-label {
-    background: darkgrey;
+    background: #d8e0e6;
     position: absolute;
     padding: 5px 30px;
     margin-left: 10px;
@@ -157,7 +157,7 @@ segmentation styling
 
 .segmentation-details-footer {
     padding: 10px;
-    background: #e6e6e6;
+    background: #d8e0e6;
 }
 
 .segmentation-chart {
@@ -167,12 +167,11 @@ segmentation styling
 
 .segmentation-data {
     border-radius: 5px;
-    height: 200px;
-    overflow-y: scroll;
+    margin-top: 105px;
 }
 
 .segmentation-data-table-heading {
-    background: #dcd7d7;
+    background: #d8e0e6;
     border: 1px solid;
     padding: 5px;
 }
@@ -180,6 +179,32 @@ segmentation styling
 .segmentation-data-table-data {
     border-right: 1px solid;
     border-left: 1px solid;
+    padding: 5px;
+}
+
+.segmentation-details-addrule-icon {
+    color: #549afc;
+    border-radius: 50%;
+    border: 1px solid #d8e0e6;
+    padding: 4px 7px;
+    font-size: 20px;
+    background: #d8e0e6;
+    margin-top: 15px;
+    margin-left: 40%;
+}
+
+.segmentation-chart-filter-item {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    color: grey;
+    font-weight: 500;
+}
+
+.segmentation-chart-filter-list {
+    border: 1px solid #e5d8be;
+    background: #eae3d5;
     padding: 5px;
 }
 
@@ -246,7 +271,13 @@ funnel styling
 }
 
 .funnel-date-range-selector {
-    background: #e8e6e6;
+    background: #d8e0e6;
+    margin-top: 5px;
+    padding: 5px 0 10px 10px;
+}
+
+.segmentation-date-range-selector {
+    background: #d8e0e6;
     margin-top: 5px;
     padding: 5px 0 10px 10px;
 }
@@ -255,10 +286,23 @@ funnel styling
     display: none;
 }
 
+.segmentation-date-range {
+    display: none;
+}
+
 .date-range-field {
     padding: 3px;
     border-radius: 4px;
-    background: #efefef;
+    background: #e7ecf0;
+    margin-right: 10px;
+    margin-top: 5px;
+    border: 1px solid #c3c3c3;
+}
+
+.segmentation-date-range-field {
+    padding: 3px;
+    border-radius: 4px;
+    background: #e7ecf0;
     margin-right: 10px;
     margin-top: 5px;
     border: 1px solid #c3c3c3;
@@ -269,6 +313,10 @@ funnel styling
 }
 
 .funnel-done-btn {
+    display: none;
+}
+
+.segmentation-done-btn {
     display: none;
 }
 
@@ -434,14 +482,25 @@ CreateFunnel Styling
     width: 200px;
 }
 
-.fs_right_icon {
-    color: #4f9cf5;
-    font-size: 20px;
+.query_right_icon {
+    color: #549afc;
     border-radius: 50%;
-    border: 1px solid;
-    padding: 0px 5px 0px 6px;
-    border-color: #cccaca;
+    border: 1px solid #d8e0e6;
+    padding: 4px 10px;
+    font-size: 20px;
+    background: #d8e0e6;
     margin-left: 10px;
+    margin-right: 10px;
+}
+
+.query_close_icon {
+    color: #549afc;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+.query_close_icon:hover {
+    color: red;
 }
 
 .fs-selection-row {
@@ -460,3 +519,5 @@ input::-webkit-calendar-picker-indicator {
 /*
 CreateFunnel Styling ends
 */
+
+ling ends */ s */ s */ s */ s */ */ s */ / s */
