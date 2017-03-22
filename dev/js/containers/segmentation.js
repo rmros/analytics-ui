@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
-import {ButtonGroup, DropdownButton, MenuItem} from 'react-bootstrap';
+import {ButtonGroup, DropdownButton, MenuItem, Checkbox} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
 import QueryStep from '../elements/queryStep.js';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import {DateRange, defaultRanges} from 'react-date-range';
 
 class Segementation extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            queryStepCount: 0,
+            queryArr: [],
+            rangePicker: {}
+        };
     }
     componentDidMount() {
         $('#segmentation-event-dropdown').text('Select Event');
@@ -93,8 +98,34 @@ class Segementation extends Component {
                 }
             }
         });
+        // this.state.queryArr = this.renderQuerySteps();
+        // this.setState(this.state);
+        this.addQueryStep();
 
     }
+    handleChange(which, payload) {
+        this.setState({[which]: payload});
+    }
+
+    addQueryStep() {
+        this.state.queryStepCount++;
+        let arr = this.state.queryArr;
+        arr.push(<QueryStep index={this.state.queryStepCount - 1} deleteQuery={this.deleteQueryStep.bind(this)}/>);
+        this.state.queryArr = arr;
+        this.setState(this.state);
+        //  this.renderQuerySteps();
+    }
+    renderQuerySteps() {}
+    deleteQueryStep(index) {
+        console.log(index);
+        this.state.queryArr = this.state.queryArr.filter((element) => {
+            return (element.props.index !== index)
+        });
+        this.state.queryStepCount--;
+        this.setState(this.state);
+
+    }
+
     render() {
         const tableData = [
             {
@@ -242,6 +273,7 @@ class Segementation extends Component {
         const options = {
             noDataText: 'No Events Found!!'
         }
+        const format = 'MMM D\' YYYY';
 
         return (
             <div>
@@ -265,17 +297,130 @@ class Segementation extends Component {
                     <div class="segmentation-details-body">
                         <span class="segmentation-details-by-label col-md-1">By</span><br/>
                         <br></br>
-                        <QueryStep/><QueryStep/><QueryStep/><QueryStep/>
+                        {this.state.queryArr}
+                        <i class="ion ion-plus-round segmentation-details-addrule-icon" onClick={this.addQueryStep.bind(this)}></i>
                     </div>
                     <div class="segmentation-details-footer">
                         <button class="btn btn-info segmentation-details-show-btn">Show</button>
                     </div>
                 </div>
                 <div class="segmentation-chart">
+                    <div class="segmentation-date-range-selector">
+                        <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['startDate'] && this.state.rangePicker['startDate'].format(format).toString()}/>
+                        <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['endDate'] && this.state.rangePicker['endDate'].format(format).toString()}/>
+                        <button class="btn btn-primary segmentation-done-btn">Done</button>
+                    </div>
+                    <div class="segmentation-chart-filter">
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Documentation Views
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Page Views
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Home Page
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Pricing Page
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Login
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Notification Sent
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Page Views
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Page Views
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Home Page
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Pricing Page
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Home Page
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Pricing Page
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Documentation Views
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Page Views
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Home Page
+                            </Checkbox>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Visited Pricing Page
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Login
+                            </Checkbox>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <Checkbox inline class="segmentation-chart-filter-item">
+                                Notification Sent
+                            </Checkbox>
+                        </div>
+                    </div>
+                    <div class="segmentation-date-range">
+                        <DateRange ranges={defaultRanges} onInit={this.handleChange.bind(this, 'rangePicker')} onChange={this.handleChange.bind(this, 'rangePicker')}/>
+                    </div>
+                    <br/><br/>
                     <canvas id="segmentationChart" width="400" height="400"></canvas>
                 </div>
+                <br/><br/>
                 <div class="segmentation-data">
-                    <BootstrapTable data={tableData} options={options} hover expandableRow={this.isExpandableRow} expandComponent={this.expandComponent} search={true} trClassName='liveview-table'>
+                    <BootstrapTable height={'200px'} data={tableData} options={options} hover expandableRow={this.isExpandableRow} expandComponent={this.expandComponent} search={true} trClassName='liveview-table'>
                         <TableHeaderColumn dataField='event' dataSort={true} columnClassName="liveview-table-data">Event</TableHeaderColumn>
                         <TableHeaderColumn dataField='time' dataSort={true} columnClassName="liveview-table-data">Time</TableHeaderColumn>
                         <TableHeaderColumn dataField='browser' dataSort={true} columnClassName="liveview-table-data">Browser</TableHeaderColumn>

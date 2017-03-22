@@ -11,10 +11,10 @@ class QueryStep extends Component {
             value: 1
         };
     }
-    handleChange(value) {
-        this.setState({value: value});
-    }
 
+    deleteQuery() {
+        this.props.deleteQuery(this.props.index);
+    }
     render() {
         return (
 
@@ -25,12 +25,8 @@ class QueryStep extends Component {
                         <option value="Visted 1"/>
                         <option value="Signup"/>
                     </datalist>
-                    <i class="ion ion-ios-arrow-forward fs_right_icon"></i>
-                    <input class="form-control fs-select-property" placeholder="Select Property" type="text" list="eventsName"/>
-                    <datalist id="eventsName">
-                        <option value="Visted 1"/>
-                        <option value="Signup"/>
-                    </datalist>
+                    <i class="ion ion-ios-arrow-forward query_right_icon"></i>
+
                     <ButtonGroup vertical>
                         <DropdownButton title="Select Query" id="fs-query-dropdown">
                             <MenuItem class="segmentation-event-list-item" eventKey="2">Custom Event 1</MenuItem>
@@ -50,6 +46,7 @@ class QueryStep extends Component {
                         <option value="Visted 1"/>
                         <option value="Signup"/>
                     </datalist>
+                    <i class="ion ion-close-round query_close_icon" onClick={this.deleteQuery.bind(this)}></i>
 
                 </div>
             </div>

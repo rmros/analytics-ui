@@ -19,8 +19,7 @@ export const initApp = (appId) => {
                     allApps.push({name: app.name, id: app.appId});
                     length--;
                     if (length == 0) {
-                        var app;
-                        if (!appId || appId == '' || appId == "")
+                        if (!appId || appId == '' || appId == "") 
                             window.location.href = ANALYTICS_URL + availableApps[0].appId
                         else {
                             app = availableApps.filter(function(obj) {

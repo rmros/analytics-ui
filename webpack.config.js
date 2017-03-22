@@ -3,6 +3,13 @@ var webpack = require('webpack');
 module.exports = {
     entry: ['./dev/js/index.js'],
     module: {
+        preLoaders: [
+            {
+                test: /\.js?$/,
+                loader: 'eslint',
+                exclude: /node_modules/
+            }
+        ],
         loaders: [
             {
                 test: /\.scss/,
