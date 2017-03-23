@@ -6,7 +6,6 @@ import {browserHistory} from "react-router";
 import QueryStep from '../elements/queryStep.js';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {DateRange, defaultRanges} from 'react-date-range';
-
 class Segementation extends Component {
     constructor(props) {
         super(props);
@@ -98,10 +97,6 @@ class Segementation extends Component {
                 }
             }
         });
-        // this.state.queryArr = this.renderQuerySteps();
-        // this.setState(this.state);
-        this.addQueryStep();
-
     }
     handleChange(which, payload) {
         this.setState({[which]: payload});
@@ -115,7 +110,7 @@ class Segementation extends Component {
         this.setState(this.state);
         //  this.renderQuerySteps();
     }
-    renderQuerySteps() {}
+
     deleteQueryStep(index) {
         console.log(index);
         this.state.queryArr = this.state.queryArr.filter((element) => {

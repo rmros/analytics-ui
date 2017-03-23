@@ -28,11 +28,13 @@ $('.segmentation-date-range-field').click(function() {
     $('.segmentation-date-range').toggle();
     $('.segmentation-done-btn').toggle();
     $('#segmentationChart').toggle();
+    $('.segmentation-chart-filter').toggle();
     $('.segmentation-date-range-field').toggleClass('blue-border');
 });
 $('.segmentation-done-btn').click(function() {
     $('.segmentation-date-range').toggle();
     $('#segmentationChart').toggle();
+    $('.segmentation-chart-filter').toggle();
     $('.segmentation-date-range-field').toggleClass('blue-border');
     $('.segmentation-done-btn').toggle();
 

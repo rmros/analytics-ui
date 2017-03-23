@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
 import Chart from 'chart.js';
 import ReactTooltip from 'react-tooltip';
+import QueryStep from '../elements/queryStep.js';
 import {DateRange, defaultRanges} from 'react-date-range';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
@@ -20,7 +21,9 @@ class Funnel extends Component {
         super(props);
         this.state = {
             rangePicker: {},
-            showModal: false
+            showModal: false,
+            queryArr: [],
+            queryStepCount: 0
         };
 
     }
@@ -63,12 +66,31 @@ class Funnel extends Component {
                 }
             }
         });
+
     }
     closeModal() {
         this.setState({showModal: false})
     }
     openModal() {
         this.setState({showModal: true})
+    }
+    addQueryStep() {
+        this.state.queryStepCount++;
+        let arr = this.state.queryArr;
+        arr.push(<QueryStep index={this.state.queryStepCount - 1} deleteQuery={this.deleteQueryStep.bind(this)}/>);
+        this.state.queryArr = arr;
+        this.setState(this.state);
+        //  this.renderQuerySteps();
+    }
+
+    deleteQueryStep(index) {
+        console.log(index);
+        this.state.queryArr = this.state.queryArr.filter((element) => {
+            return (element.props.index !== index)
+        });
+        this.state.queryStepCount--;
+        this.setState(this.state);
+
     }
 
     handleChange(which, payload) {
@@ -284,6 +306,12 @@ class Funnel extends Component {
                 <div class="funnel-data">
                     <div class="funnel-data-overview-span">
                         Overview
+                    </div>
+                    <div>
+                        <span class="segmentation-details-by-label col-md-1">By</span><br/>
+                        <br></br>
+                        {this.state.queryArr}
+                        <i class="ion ion-plus-round segmentation-details-addrule-icon" onClick={this.addQueryStep.bind(this)}></i>
                     </div>
                     <div class="funnel-data-setting"></div>
                     <div class="funnel-data-table">
