@@ -189,7 +189,7 @@ segmentation styling
     font-size: 20px;
     background: #d8e0e6;
     margin-top: 15px;
-    margin-left: 40%;
+    margin-left: 48%;
 }
 
 .segmentation-chart-filter-item {
@@ -230,6 +230,16 @@ segmentation styling
     background-color: white!important;
     border: 2px solid #c2c2c2;
     ;
+}
+
+.segmentation-compare-icon {
+    content: url('../img/left_align_icon.png');
+    height: 25px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+    /* padding: 5px; */
+    cursor: pointer;
 }
 
 
@@ -579,7 +589,12 @@ CreateFunnel Styling
 }
 
 .sort-column {
-    background: #bfcfda;
+    background: #549afc;
+}
+
+.liveview-modal .modal-dialog {
+    width: inherit;
+    padding: 0px 100px;
 }
 
 
@@ -594,4 +609,4 @@ input::-webkit-calendar-picker-indicator {
 CreateFunnel Styling ends
 */
 
-ling ends */ s */ s */ s */ s */ */ s */ / s */ */ */ /
+ling ends */ s */ s */ s */ s */ */ s */ / s */ */ */ / / / */ / / / / / / /

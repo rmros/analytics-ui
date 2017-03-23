@@ -232,7 +232,7 @@ class LiveView extends Component {
                         <TableHeaderColumn dataField='distinctId' dataSort={true} isKey={true} columnClassName="liveview-table-data">Distinct Id</TableHeaderColumn>
                     </BootstrapTable>
                 </div>
-                <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
+                <Modal class="liveview-modal " show={this.state.showModal} onHide={this.closeModal.bind(this)}>
                     <Modal.Header class="modal-header-style">
                         <Modal.Title>
                             <span class="modal-title">
@@ -243,6 +243,11 @@ class LiveView extends Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body >
+                        <input class="form-control fs-select-event" placeholder="Select Event" type="text" list="eventsName"/><br/>
+                        <datalist id="eventsName">
+                            <option value="Visted 1"/>
+                            <option value="Signup"/>
+                        </datalist><br/>
                         <span class="segmentation-details-by-label col-md-1">By</span><br/>
                         <br></br>
                         {this.state.queryArr}
