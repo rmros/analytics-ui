@@ -167,7 +167,6 @@ segmentation styling
 
 .segmentation-data {
     border-radius: 5px;
-    margin-top: 105px;
 }
 
 .segmentation-data-table-heading {
@@ -204,11 +203,18 @@ segmentation styling
 
 .segmentation-chart-filter-list {
     border: 1px solid #e5d8be;
-    background: #fffce7;
+    background: #fffef7;
     padding: 5px;
 }
 
+.segmentation-chart-filter {
+    display: inline-block;
+    padding: 8px;
+    background: #d8e0e6;
+}
+
 .checkbox-design {
+    background-color: #cccccc;
     background-image: url('https://cdn.mxpnl.com/site_media/images/backbone_widgets/select/checkmark.svg');
     height: 15px;
     width: 15px;
@@ -275,11 +281,15 @@ funnel styling
 }
 
 .funnel-close-icon {
-    color: red;
+    color: #cd3131;
 }
 
 .funnel-close-icon:hover {
-    color: red;
+    color: #cd3131;
+}
+
+.funnel-close-icon:focus {
+    color: #cd3131;
 }
 
 .funnel-date-range-selector {
@@ -371,6 +381,7 @@ funnel styling
     font-size: 30px;
     width: 60px;
     padding: 15px;
+    content: url("../img/trash.png");
 }
 
 .modal-title {
@@ -431,6 +442,53 @@ LiveView Styling
     border-left: none!important;
     border-right: none!important;
     padding: 10px!important;
+}
+
+.liveview-top-heading {
+    background: #549afb;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.filter-icon {
+    margin-right: 5px;
+}
+
+.modal-header-style {
+    color: white;
+    background: #4f9cf5;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-family: Signika;
+}
+
+.modal-title {
+    vertical-align: middle;
+}
+
+.modal-icon-style {
+    border-radius: 50%;
+    background: #2c5f9a;
+    font-size: 30px;
+    width: 60px;
+    padding: 15px;
+    content: url("../img/trash.png");
+}
+
+.modal-title-inner-text {
+    font-size: 14px;
+    font-weight: normal;
+    font-family: Signika;
+}
+
+.create-btn {
+    background: #4f9cf5;
+}
+
+.create-btn:hover {
+    background: #4f9cf5;
 }
 
 
@@ -520,6 +578,10 @@ CreateFunnel Styling
     margin-top: 10px;
 }
 
+.sort-column {
+    background: #bfcfda;
+}
+
 
 /*remove datalist caret*/
 
@@ -532,4 +594,4 @@ input::-webkit-calendar-picker-indicator {
 CreateFunnel Styling ends
 */
 
-ling ends */ s */ s */ s */ s */ */ s */ / s */
+ling ends */ s */ s */ s */ s */ */ s */ / s */ */ */ /

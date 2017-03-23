@@ -6,7 +6,6 @@ import {browserHistory} from "react-router";
 import QueryStep from '../elements/queryStep.js';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {DateRange, defaultRanges} from 'react-date-range';
-
 class Segementation extends Component {
     constructor(props) {
         super(props);
@@ -98,10 +97,6 @@ class Segementation extends Component {
                 }
             }
         });
-        // this.state.queryArr = this.renderQuerySteps();
-        // this.setState(this.state);
-        this.addQueryStep();
-
     }
     handleChange(which, payload) {
         this.setState({[which]: payload});
@@ -115,7 +110,7 @@ class Segementation extends Component {
         this.setState(this.state);
         //  this.renderQuerySteps();
     }
-    renderQuerySteps() {}
+
     deleteQueryStep(index) {
         console.log(index);
         this.state.queryArr = this.state.queryArr.filter((element) => {
@@ -304,7 +299,7 @@ class Segementation extends Component {
                         <button class="btn btn-info segmentation-details-show-btn">Show</button>
                     </div>
                 </div>
-                <div class="segmentation-chart">
+                <div class="segmentation-chart-header">
                     <div class="segmentation-date-range-selector">
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['startDate'] && this.state.rangePicker['startDate'].format(format).toString()}/>
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['endDate'] && this.state.rangePicker['endDate'].format(format).toString()}/>
@@ -315,6 +310,126 @@ class Segementation extends Component {
                             <label class="segmentation-chart-filter-item">
                                 <div class="checkbox-design">{' '}</div>
                                 Documentation Views
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Page Views
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Visited Home Page
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
+                                Visited Pricing Page
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Login
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Notification Sent
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Page Views
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Page Views
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Visited Home Page
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
+                                Visited Pricing Page
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Login
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Notification Sent
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Page Views
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Page Views
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Visited Home Page
+                            </label>
+
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
+                                Visited Pricing Page
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Login
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Notification Sent
+                            </label>
+                        </div>
+                        <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+                                Page Views
                             </label>
 
                         </div>
@@ -444,10 +559,11 @@ class Segementation extends Component {
                     <div class="segmentation-date-range">
                         <DateRange ranges={defaultRanges} onInit={this.handleChange.bind(this, 'rangePicker')} onChange={this.handleChange.bind(this, 'rangePicker')}/>
                     </div>
-                    <br/><br/>
-                    <canvas id="segmentationChart" width="400" height="400"></canvas>
+                    {/* <canvas id="segmentationChart" width="400px" height="400px"></canvas> */}
                 </div>
-                <br/><br/>
+                <div class="segmentation-chart">
+                    <canvas id="segmentationChart" width="400px" height="400px"></canvas>
+                </div>
                 <div class="segmentation-data">
                     <BootstrapTable height={'200px'} data={tableData} options={options} hover expandableRow={this.isExpandableRow} expandComponent={this.expandComponent} search={true} trClassName='liveview-table'>
                         <TableHeaderColumn dataField='event' dataSort={true} columnClassName="liveview-table-data">Event</TableHeaderColumn>

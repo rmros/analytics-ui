@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Accordion, Panel, Table} from 'react-bootstrap';
+import {Accordion, Panel, Table, Modal, Button} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import QueryStep from '../elements/queryStep.js';
 
 class BSTable extends React.Component {
     render() {
@@ -27,7 +28,11 @@ class BSTable extends React.Component {
 class LiveView extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            showModal: false,
+            queryArr: [],
+            queryStepCount: 0
+        };
     }
 
     expandComponent(row) {
@@ -37,6 +42,34 @@ class LiveView extends Component {
     isExpandableRow(row) {
         return true;
     }
+    addQueryStep() {
+        this.state.queryStepCount++;
+        let arr = this.state.queryArr;
+        arr.push(<QueryStep index={this.state.queryStepCount - 1} deleteQuery={this.deleteQueryStep.bind(this)}/>);
+        this.state.queryArr = arr;
+        this.setState(this.state);
+        //  this.renderQuerySteps();
+    }
+
+    deleteQueryStep(index) {
+        console.log(index);
+        this.state.queryArr = this.state.queryArr.filter((element) => {
+            return (element.props.index !== index)
+        });
+        this.state.queryStepCount--;
+        this.setState(this.state);
+
+    }
+    openModal() {
+        this.state.showModal = true;
+        this.setState(this.state);
+    }
+
+    closeModal() {
+        this.state.showModal = false;
+        this.setState(this.state);
+    }
+
     render() {
         const tableData = [
             {
@@ -186,7 +219,9 @@ class LiveView extends Component {
         }
         return (
             <div>
-                <div class="liveview-top-heading"></div>
+                <div class="liveview-top-heading" onClick={this.openModal.bind(this)}>
+                    <i class="ion ion-funnel filter-icon"/>Filter
+                </div>
                 <div class="liveview-table-div">
                     <BootstrapTable data={tableData} options={options} hover expandableRow={this.isExpandableRow} expandComponent={this.expandComponent} search={true} trClassName='liveview-table'>
                         <TableHeaderColumn dataField='event' dataSort={true} columnClassName="liveview-table-data">Event</TableHeaderColumn>
@@ -197,7 +232,27 @@ class LiveView extends Component {
                         <TableHeaderColumn dataField='distinctId' dataSort={true} isKey={true} columnClassName="liveview-table-data">Distinct Id</TableHeaderColumn>
                     </BootstrapTable>
                 </div>
+                <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
+                    <Modal.Header class="modal-header-style">
+                        <Modal.Title>
+                            <span class="modal-title">
+                                New Folder
+                            </span>
+                            <img class="modal-icon-style pull-right"></img>
+                            <div class="modal-title-inner-text">Create a new folder.</div>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body >
+                        <span class="segmentation-details-by-label col-md-1">By</span><br/>
+                        <br></br>
+                        {this.state.queryArr}
+                        <i class="ion ion-plus-round segmentation-details-addrule-icon" onClick={this.addQueryStep.bind(this)}></i>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button className="btn-primary create-btn">Create</Button>
 
+                    </Modal.Footer>
+                </Modal>
             </div>
 
         );
