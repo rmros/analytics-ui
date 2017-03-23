@@ -167,7 +167,6 @@ segmentation styling
 
 .segmentation-data {
     border-radius: 5px;
-    margin-top: 105px;
 }
 
 .segmentation-data-table-heading {
@@ -206,6 +205,12 @@ segmentation styling
     border: 1px solid #e5d8be;
     background: #fffce7;
     padding: 5px;
+}
+
+.segmentation-chart-filter {
+    display: inline-block;
+    padding: 8px;
+    background: #d8e0e6;
 }
 
 .checkbox-design {
@@ -371,6 +376,7 @@ funnel styling
     font-size: 30px;
     width: 60px;
     padding: 15px;
+    content: url("trash.png");
 }
 
 .modal-title {

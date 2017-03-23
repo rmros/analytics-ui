@@ -301,7 +301,7 @@ class Funnel extends Component {
                     <Modal.Header class="delete-modal-header-style">
                         <Modal.Title>
                             Delete
-                            <img src="/assets/img/trash.png" class="delete-modal-icon-style pull-right"></img>
+                            <img class="delete-modal-icon-style pull-right"></img>
                             <div class="modal-title-inner-text">You are about to delete
 
                             </div>
