@@ -312,104 +312,133 @@ class Segementation extends Component {
                     </div>
                     <div class="segmentation-chart-filter">
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Documentation Views
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Page Views
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Visited Home Page
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Pricing Page
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Login
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Notification Sent
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Page Views
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
                                 Page Views
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Home Page
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Pricing Page
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Home Page
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Pricing Page
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Documentation Views
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Page Views
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Home Page
-                            </Checkbox>
+                            </label>
 
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Visited Pricing Page
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Login
-                            </Checkbox>
+                            </label>
                         </div>
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
-                            <Checkbox inline class="segmentation-chart-filter-item">
+                            <label class="segmentation-chart-filter-item">
+                                <div class="checkbox-design">{' '}</div>
+
                                 Notification Sent
-                            </Checkbox>
+                            </label>
                         </div>
                     </div>
                     <div class="segmentation-date-range">
