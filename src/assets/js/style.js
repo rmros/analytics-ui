@@ -37,3 +37,13 @@ $('.segmentation-done-btn').click(function() {
     $('.segmentation-done-btn').toggle();
 
 });
+
+$('.segmentation-chart-filter').children().find('.checkbox-design').each(function() {
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
+    $(this).css("background-color", "#" + randomColor);
+});
+
+$('.segmentation-chart-filter-item').click(function() {
+    $(this).find('div').toggleClass('white');
+})
