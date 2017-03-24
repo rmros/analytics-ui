@@ -6,6 +6,8 @@ import {browserHistory} from "react-router";
 import QueryStep from '../elements/queryStep.js';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {DateRange, defaultRanges} from 'react-date-range';
+import ReactTooltip from 'react-tooltip';
+
 class Segementation extends Component {
     constructor(props) {
         super(props);
@@ -304,6 +306,18 @@ class Segementation extends Component {
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['startDate'] && this.state.rangePicker['startDate'].format(format).toString()}/>
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['endDate'] && this.state.rangePicker['endDate'].format(format).toString()}/>
                         <button class="btn btn-primary segmentation-done-btn">Done</button>
+                        <img class="segmentation-compare-icon " data-tip data-for="edit-funnel-icon"/>
+                        <ReactTooltip id='edit-funnel-icon' place="bottom" effect='solid'>
+                            <span>{"Compare "}</span>
+                        </ReactTooltip>
+                        <div class="compare-filter-list">
+                            <input class="form-control fs-select-event" placeholder="Select Event" type="text" list="eventsName"/>
+                            <datalist id="eventsName">
+                                <option value="Visted 1"></option>
+                                <option value="Signup"/>
+                            </datalist>
+                        </div>
+
                     </div>
                     <div class="segmentation-chart-filter">
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">

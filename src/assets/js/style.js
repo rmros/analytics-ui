@@ -49,3 +49,8 @@ $('.segmentation-chart-filter').children().find('.checkbox-design').each(functio
 $('.segmentation-chart-filter-item').click(function() {
     $(this).find('div').toggleClass('white');
 })
+
+$('.segmentation-compare-icon').click(function() {
+    $('.compare-filter-list').toggleClass('inline');
+    $(this).toggle();
+})
