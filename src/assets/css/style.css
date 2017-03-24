@@ -242,6 +242,16 @@ segmentation styling
     cursor: pointer;
 }
 
+.compare-filter-list {
+    padding-left: 10px;
+    display: none;
+    float: right;
+}
+
+.inline {
+    display: inline;
+}
+
 
 /*
 segementation styling ends

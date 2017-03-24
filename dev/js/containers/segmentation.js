@@ -310,6 +310,14 @@ class Segementation extends Component {
                         <ReactTooltip id='edit-funnel-icon' place="bottom" effect='solid'>
                             <span>{"Compare "}</span>
                         </ReactTooltip>
+                        <div class="compare-filter-list">
+                            <input class="form-control fs-select-event" placeholder="Select Event" type="text" list="eventsName"/>
+                            <datalist id="eventsName">
+                                <option value="Visted 1"></option>
+                                <option value="Signup"/>
+                            </datalist>
+                        </div>
+
                     </div>
                     <div class="segmentation-chart-filter">
                         <div class=" segmentation-chart-filter-list col-md-2 col-xs-3">
