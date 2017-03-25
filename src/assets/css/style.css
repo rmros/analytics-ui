@@ -144,11 +144,26 @@ segmentation styling
     padding: 20px;
 }
 
-.segmentation-details-by-label {
-    background: #d8e0e6;
+.segmentation-details-label {
     position: absolute;
     padding: 5px 30px;
     margin-left: 10px;
+}
+
+.and-or-label-background {
+    background: #d8e0e6;
+}
+
+.segmentation-details-and-label {
+    padding: 10px;
+    border: 1px solid #d8e0e6;
+    cursor: pointer;
+}
+
+.segmentation-details-or-label {
+    padding: 10px;
+    border: 1px solid #d8e0e6;
+    cursor: pointer;
 }
 
 .segmentation-details-show-btn {
@@ -211,6 +226,7 @@ segmentation styling
     display: inline-block;
     padding: 8px;
     background: #d8e0e6;
+    width: 100%;
 }
 
 .checkbox-design {

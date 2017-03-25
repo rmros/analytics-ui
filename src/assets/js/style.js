@@ -6,11 +6,7 @@ $('#funnel-event-dropdown').text('Select Funnel');
 $('.funnel-event-list-item').click(function() {
     $('#funnel-event-dropdown').text($(this).text());
 });
-$('#segmentation-event-dropdown').text('Select Event');
 
-$('.segmentation-event-list-item').click(function() {
-    $('#segmentation-event-dropdown').text($(this).text());
-});
 $('.date-range-field').click(function() {
     $('.funnel-date-range').toggle();
     $('.funnel-done-btn').toggle();
@@ -40,17 +36,19 @@ $('.segmentation-done-btn').click(function() {
 
 });
 
-$('.segmentation-chart-filter').children().find('.checkbox-design').each(function() {
-    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
-    $(this).css("background-color", "#" + randomColor);
-});
-
-$('.segmentation-chart-filter-item').click(function() {
-    $(this).find('div').toggleClass('white');
-})
-
 $('.segmentation-compare-icon').click(function() {
     $('.compare-filter-list').toggleClass('inline');
     $(this).toggle();
 })
+
+// $('.segmentation-details-or-label').click(() => {
+//     $('.segmentation-details-and-label').css('background', 'white');
+//     $('.segmentation-details-or-label').css('background', '#d8e0e6');
+//
+// })
+//
+// $('.segmentation-details-and-label').click(() => {
+//     $('.segmentation-details-or-label').css('background', 'white');
+//     $('.segmentation-details-and-label').css('background', '#d8e0e6');
+//
+// })
