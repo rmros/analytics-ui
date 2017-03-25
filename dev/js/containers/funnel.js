@@ -351,7 +351,7 @@ class Funnel extends Component {
 
 }
 function mapStateToProps(state) {
-    return {document: state.activeDoc};
+    return {};
 }
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({}, dispatch);

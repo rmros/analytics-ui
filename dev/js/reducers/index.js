@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import DocumentReducer from './reducer-docs';
+import EventReducer from './reducer-events';
 
-const allReducers = combineReducers({documents: DocumentReducer});
+const allReducers = combineReducers({events: EventReducer});
 
 export default allReducers

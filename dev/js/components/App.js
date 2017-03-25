@@ -1,6 +1,6 @@
 import React from 'react';
 import SideBar from '../containers/sidebar';
-import {initApp} from '../actions/index';
+import {initApp, fetchAllEvents} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory, Link} from 'react-router';
@@ -31,6 +31,12 @@ class App extends React.Component {
             location.assign(route);
         }
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.init !== nextProps.init)
+            this.props.fetchAllEvents();
+
+        }
 
     render() {
         let allApps = '';
@@ -164,18 +170,29 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+    const {
+        allApps,
+        appName,
+        appId,
+        userProfilePic,
+        appInitSuccess,
+        fetchingEvents,
+        init
+    } = state.events;
     return {
-        fetching: state.documents.fetching,
-        fileAddSuccess: state.documents.fileAddSuccess,
-        allApps: state.documents.allApps,
-        appName: state.documents.appName,
-        appId: state.documents.appId,
-        userProfilePic: state.documents.userProfilePic
+        allApps: allApps,
+        appName: appName,
+        appId: appId,
+        userProfilePic: userProfilePic,
+        appInitSuccess: appInitSuccess,
+        fetchingEvents: fetchingEvents,
+        init: init
     };
 }
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
-        initApp: initApp
+        initApp: initApp,
+        fetchAllEvents: fetchAllEvents
     }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(App);
