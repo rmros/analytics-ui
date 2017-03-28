@@ -1,6 +1,8 @@
 import axios from 'axios';
 import async from 'async';
 import _ from 'underscore';
+import groupByTime from 'group-by-time';
+
 export const initApp = (appId) => {
     console.log('appId', appId);
     return ((dispatch) => {
@@ -67,6 +69,32 @@ export const fetchAllEvents = () => {
                 var documentArr = _.pluck(data, 'document');
                 var allEvents = _.pluck(documentArr, 'name');
                 dispatch({type: "FETCH_ALL_EVENTS", payload: allEvents});
+            },
+            error: function(err) {
+                //Error in retrieving the data.
+            }
+        });
+    });
+}
+
+export const groupAllEvents = () => {
+    return ((dispatch) => {
+
+        var query = new CB.CloudQuery("_Event");
+        query.find({
+            success: function(data) {
+                var documentArr = _.pluck(data, 'document');
+                var groupedByDay = groupByTime(documentArr, 'createdAt', 'day');
+                var groupedByMonth = groupByTime(documentArr, 'createdAt', 'month');
+                var groupedByWeek = groupByTime(documentArr, 'createdAt', 'week');
+                dispatch({
+                    type: "GROUP_ALL_EVENTS",
+                    payload: {
+                        month: groupedByMonth,
+                        day: groupedByDay,
+                        week: groupedByWeek
+                    }
+                });
             },
             error: function(err) {
                 //Error in retrieving the data.
