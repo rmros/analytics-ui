@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ButtonGroup, DropdownButton, MenuItem, Checkbox} from 'react-bootstrap';
+import {ButtonGroup, DropdownButton, Check} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
@@ -8,6 +8,22 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {DateRange, defaultRanges} from 'react-date-range';
 import ReactTooltip from 'react-tooltip';
 import {fetchAllEvents} from '../actions/index';
+import CompareIcon from 'material-ui/svg-icons/action/compare-arrows';
+import {IconButton, Popover, Menu, MenuItem, SelectField} from 'material-ui';
+import {tableData, chartData} from '../fakeAPI'
+
+const names = [
+    'Oliver Hansen',
+    'Van Henry',
+    'April Tucker',
+    'Ralph Hubbard',
+    'Omar Alexander',
+    'Carlos Abbott',
+    'Miriam Wagner',
+    'Bradley Wilkerson',
+    'Virginia Andrews',
+    'Kelly Snyder'
+];
 
 class Segementation extends Component {
     constructor(props) {
@@ -16,9 +32,23 @@ class Segementation extends Component {
             queryStepCount: 0,
             queryArr: [],
             rangePicker: {},
-            andQuerySelected: true
+            andQuerySelected: true,
+            open: false,
+            values: []
+
         };
     }
+
+    handleTouchTap = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
+
+        this.setState({open: true, anchorEl: event.currentTarget});
+    };
+
+    handleRequestClose = () => {
+        this.setState({open: false});
+    };
     componentDidUpdate() {
         $('.segmentation-event-list-item').click(function() {
             console.log('clicked');
@@ -34,10 +64,10 @@ class Segementation extends Component {
         $('.segmentation-chart-filter-item').click(function() {
             $(this).find('div').toggleClass('white');
         })
-
     }
 
     componentDidMount() {
+        this.addQueryStep();
         $('.segmentation-chart-filter').children().find('.checkbox-design').each(function() {
             let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
@@ -51,65 +81,7 @@ class Segementation extends Component {
         var ctx = $("#segmentationChart");
         var myChart = new Chart(ctx, {
             type: 'line',
-            data: {
-                labels: [
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 ",
-                    "Feb 1 "
-                ],
-                datasets: [
-                    {
-                        label: '# of Votes',
-                        data: [
-                            0,
-                            0,
-                            2,
-                            0,
-                            0,
-                            0,
-                            0,
-                            1,
-                            0,
-                            0,
-                            0,
-                            0,
-                            1,
-                            0,
-                            3,
-                            0,
-                            0,
-                            0,
-                            0,
-                            2,
-                            0,
-                            0
-                        ],
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        fill: false,
-                        lineTension: '0'
-                    }
-                ]
-            },
+            data: chartData,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -133,7 +105,7 @@ class Segementation extends Component {
         if (this.props.allEvents) {
             let allEvents = this.props.allEvents.map((eventName, i) => {
                 return (
-                    <MenuItem class="segmentation-event-list-item" eventKey={i} key={i}>{eventName}</MenuItem>
+                    <MenuItem class="segmentation-event-list-item" key={i}>{eventName}</MenuItem>
                 );
             });
             return allEvents;
@@ -141,7 +113,13 @@ class Segementation extends Component {
     }
 
     handleChange(which, payload) {
-        this.setState({[which]: payload});
+        this.state[which] = payload
+        this.setState(this.state);
+    }
+    handleCompareListChange = (event, index, values) => this.setState({values})
+
+    menuItems(values) {
+        return this.props.allEvents.map((name) => (<MenuItem key={name} insetChildren={true} checked={values && values.includes(name)} value={name} primaryText={name}/>));
     }
 
     addQueryStep() {
@@ -150,7 +128,6 @@ class Segementation extends Component {
         arr.push(<QueryStep key={this.state.queryStepCount} index={this.state.queryStepCount - 1} deleteQuery={this.deleteQueryStep.bind(this)}/>);
         this.state.queryArr = arr;
         this.setState(this.state);
-        //  this.renderQuerySteps();
     }
     renderChartFilters() {
 
@@ -180,152 +157,11 @@ class Segementation extends Component {
     }
 
     render() {
-        const tableData = [
-            {
-                distinctId: 1,
-                event: "Visited : Home Page",
-                browser: 'Chrome',
-                city: "New Delhi",
-                country: "India",
-                time: "13 min. ago",
-                expand: [
-                    {
-                        fieldA: 'browser : Chrome',
-                        fieldB: 'OS : MAC OS X',
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 2,
-                event: "Visited : Sign Up Page",
-                browser: 'Firefox',
-                city: "New Delhi",
-                country: "India",
-                time: "11 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 3,
-                event: "Visited : Pricing Page",
-                browser: 'Safari',
-                city: "New Delhi",
-                country: "India",
-                time: "13 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 4,
-                event: "Visited : Consulting Page",
-                browser: 'Edge',
-                city: "New Delhi",
-                country: "India",
-                time: "1 day ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 5,
-                event: "Visited : Compare Page",
-                browser: 'IE',
-                city: "New Delhi",
-                country: "India",
-                time: "3 sec. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 6,
-                event: "Visited : Home Page",
-                browser: 'Chrome',
-                city: "New Delhi",
-                country: "India",
-                time: "5 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 7,
-                event: "Visited : Home Page",
-                browser: 'unknown',
-                city: "New Delhi",
-                country: "India",
-                time: "13 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }
-        ];
         const options = {
             noDataText: 'No Events Found!!'
         }
+        const {values} = this.state;
+
         const format = 'MMM D\' YYYY';
         const allEventList = this.renderAllEventList();
         const chartFilters = this.renderChartFilters();
@@ -362,17 +198,12 @@ class Segementation extends Component {
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['startDate'] && this.state.rangePicker['startDate'].format(format).toString()}/>
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['endDate'] && this.state.rangePicker['endDate'].format(format).toString()}/>
                         <button class="btn btn-primary segmentation-done-btn">Done</button>
-                        <img class="segmentation-compare-icon " data-tip data-for="edit-funnel-icon"/>
-                        <ReactTooltip id='edit-funnel-icon' place="bottom" effect='solid'>
-                            <span>{"Compare "}</span>
+                        <IconButton class="segmentation-compare-icon" data-tip data-for="compare-icon" onTouchTap={this.handleTouchTap} touch={true}>
+                            <CompareIcon/>
+                        </IconButton>
+                        <ReactTooltip id='compare-icon' place="bottom" effect='solid'>
+                            <span>{"Compare"}</span>
                         </ReactTooltip>
-                        <div class="compare-filter-list">
-                            <input class="form-control fs-select-event" placeholder="Select Event" type="text" list="eventsName"/>
-                            <datalist id="eventsName">
-                                <option value="Visted 1"></option>
-                                <option value="Signup"/>
-                            </datalist>
-                        </div>
 
                     </div>
                     <div class="segmentation-chart-filter">
@@ -396,7 +227,18 @@ class Segementation extends Component {
                         <TableHeaderColumn dataField='distinctId' dataSort={true} isKey={true} columnClassName="liveview-table-data">Distinct Id</TableHeaderColumn>
                     </BootstrapTable>
                 </div>
+                <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{
+                    horizontal: 'left',
+                    vertical: 'bottom'
+                }} targetOrigin={{
+                    horizontal: 'left',
+                    vertical: 'top'
+                }} onRequestClose={this.handleRequestClose}>
+                    <SelectField maxHeight={200} multiple={true} hintText="Select a name" value={values} onChange={this.handleCompareListChange}>
+                        {this.menuItems(values)}
 
+                    </SelectField>
+                </Popover>
             </div>
 
         );
