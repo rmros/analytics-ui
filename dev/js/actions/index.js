@@ -64,6 +64,7 @@ export const fetchAllEvents = () => {
         dispatch({type: "FETCHING_EVENTS"});
 
         var query = new CB.CloudQuery("_Event");
+        query.limit = 9999999;
         query.distinct('name', {
             success: function(data) {
                 var documentArr = _.pluck(data, 'document');

@@ -35,20 +35,3 @@ $('.segmentation-done-btn').click(function() {
     $('.segmentation-done-btn').toggle();
 
 });
-
-$('.segmentation-compare-icon').click(function() {
-    $('.compare-filter-list').toggleClass('inline');
-    $(this).toggle();
-})
-
-// $('.segmentation-details-or-label').click(() => {
-//     $('.segmentation-details-and-label').css('background', 'white');
-//     $('.segmentation-details-or-label').css('background', '#d8e0e6');
-//
-// })
-//
-// $('.segmentation-details-and-label').click(() => {
-//     $('.segmentation-details-or-label').css('background', 'white');
-//     $('.segmentation-details-and-label').css('background', '#d8e0e6');
-//
-// })

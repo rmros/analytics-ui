@@ -4,14 +4,10 @@ import {initApp, fetchAllEvents} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {browserHistory, Link} from 'react-router';
-import {
-    Navbar,
-    Nav,
-    NavItem,
-    NavDropdown,
-    MenuItem,
-    Dropdown
-} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, Dropdown} from 'react-bootstrap';
+
+import {IconButton, MenuItem, Menu, Popover, DropDownMenu} from 'material-ui'
+import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
 
 class App extends React.Component {
     constructor(props)
@@ -19,10 +15,22 @@ class App extends React.Component {
         super(props);
         this.props.initApp('' + window.location.pathname.split('/')[1]);
         this.state = {
-            scroll: {}
+            scroll: {},
+            open: false
         };
 
     }
+    handleTouchTap = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
+
+        this.setState({open: true, anchorEl: event.currentTarget});
+    };
+
+    handleRequestClose = () => {
+        this.setState({open: false});
+    };
+
     navigate(route, opts) {
         if (opts) {
             browserHistory.push(route);
@@ -87,23 +95,16 @@ class App extends React.Component {
                                     <i class="ion ion-android-apps dashboard-icon "></i>
                                     &nbsp; Dashboard</MenuItem>
                             </NavDropdown>
+
                         </Nav>
                         <Nav pullRight>
-                            <NavItem href={DASHBOARD_URL} class='dashboard-menuitem' onClick={this.navigate.bind(this, DASHBOARD_URL)}>
-                                <i class="ion ion-android-apps dashboard-icon"></i>
-                                &nbsp; Dashboard
-                            </NavItem>
 
-                            <NavDropdown eventKey={3} title={profilePic} id="basic-nav-dropdown" class="profile">
-
-                                <MenuItem key={1} onClick={this.navigate.bind(this, DASHBOARD_URL + '/#/profile')}>
-                                    Profile
-                                </MenuItem>
-                                <MenuItem key={2} onClick={this.navigate.bind(this, '#/')}>
-                                    Logout
-                                </MenuItem>
-                            </NavDropdown>
-
+                            <IconButton touch={true}>
+                                <DashboardIcon/>
+                            </IconButton>
+                            <IconButton touch={true}>
+                                <img src={this.props.userProfilePic} class="profilePic" onTouchTap={this.handleTouchTap}></img>
+                            </IconButton>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -146,7 +147,7 @@ class App extends React.Component {
 
                 <Navbar class="navbar-style navbar-border " collapseOnSelect fixedBottom={true}>
                     <Navbar.Brand>
-                        <a class="footer-item" href="https://cloudboost.io">&copy; 2017 CloudBoost</a>
+                        <a class="footer-item" href="https://cloudboost.io">&copy; {(new Date()).getFullYear()}&nbsp; CloudBoost</a>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
 
@@ -163,7 +164,22 @@ class App extends React.Component {
 
                     </Navbar.Collapse>
                 </Navbar>
-
+                <Popover open={this.state.open} anchorEl={this.state.anchorEl} anchorOrigin={{
+                    horizontal: 'left',
+                    vertical: 'bottom'
+                }} targetOrigin={{
+                    horizontal: 'left',
+                    vertical: 'top'
+                }} onRequestClose={this.handleRequestClose}>
+                    <Menu>
+                        <MenuItem key={1} onClick={this.navigate.bind(this, DASHBOARD_URL + '/#/profile')}>
+                            Profile
+                        </MenuItem>
+                        <MenuItem key={2} onClick={this.navigate.bind(this, '#/')}>
+                            Logout
+                        </MenuItem>
+                    </Menu>
+                </Popover>
             </div>
         )
     }
