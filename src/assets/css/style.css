@@ -269,6 +269,10 @@ segmentation styling
     display: inline;
 }
 
+.segmentation-chart-options {
+    float: right;
+}
+
 
 /*
 segementation styling ends
@@ -616,7 +620,7 @@ CreateFunnel Styling
 }
 
 .sort-column {
-    background: #549afc;
+    background: #e5e5e5;
 }
 
 .liveview-modal .modal-dialog {

@@ -7,6 +7,10 @@ $('.funnel-event-list-item').click(function() {
     $('#funnel-event-dropdown').text($(this).text());
 });
 
+$('.segmentation-period-list-item').click(function() {
+    $('#segmentation-period-dropdown').text($(this).text());
+});
+
 $('.date-range-field').click(function() {
     $('.funnel-date-range').toggle();
     $('.funnel-done-btn').toggle();

@@ -9,21 +9,16 @@ import {DateRange, defaultRanges} from 'react-date-range';
 import ReactTooltip from 'react-tooltip';
 import {fetchAllEvents} from '../actions/index';
 import CompareIcon from 'material-ui/svg-icons/action/compare-arrows';
-import {IconButton, Popover, Menu, MenuItem, SelectField} from 'material-ui';
+import {
+    IconButton,
+    Popover,
+    Menu,
+    MenuItem,
+    SelectField,
+    DropDownMenu
+} from 'material-ui';
 import {tableData, chartData} from '../fakeAPI'
-
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder'
-];
+import {filterColors} from '../util'
 
 class Segementation extends Component {
     constructor(props) {
@@ -34,13 +29,12 @@ class Segementation extends Component {
             rangePicker: {},
             andQuerySelected: true,
             open: false,
-            values: []
-
+            values: [],
+            value: 1
         };
     }
 
     handleTouchTap = (event) => {
-        // This prevents ghost click.
         event.preventDefault();
 
         this.setState({open: true, anchorEl: event.currentTarget});
@@ -49,16 +43,18 @@ class Segementation extends Component {
     handleRequestClose = () => {
         this.setState({open: false});
     };
+    handleChange2 = (event, index, value) => this.setState({value});
+
     componentDidUpdate() {
         $('.segmentation-event-list-item').click(function() {
             console.log('clicked');
             $('#segmentation-event-dropdown').text($(this).text());
         });
 
-        $('.segmentation-chart-filter').children().find('.checkbox-design').each(function() {
-            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        $('.segmentation-chart-filter').children().find('.checkbox-design').each(function(i) {
+            //            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
-            $(this).css("background-color", "#" + randomColor);
+            $(this).css("background-color", filterColors[i]);
         });
 
         $('.segmentation-chart-filter-item').click(function() {
@@ -198,12 +194,21 @@ class Segementation extends Component {
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['startDate'] && this.state.rangePicker['startDate'].format(format).toString()}/>
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['endDate'] && this.state.rangePicker['endDate'].format(format).toString()}/>
                         <button class="btn btn-primary segmentation-done-btn">Done</button>
-                        <IconButton class="segmentation-compare-icon" data-tip data-for="compare-icon" onTouchTap={this.handleTouchTap} touch={true}>
-                            <CompareIcon/>
-                        </IconButton>
-                        <ReactTooltip id='compare-icon' place="bottom" effect='solid'>
-                            <span>{"Compare"}</span>
-                        </ReactTooltip>
+                        <div class="segmentation-chart-options">
+                            <ButtonGroup vertical>
+                                <DropdownButton title="Day" id="segmentation-period-dropdown">
+                                    <MenuItem class="segmentation-period-list-item" key={1}>Day</MenuItem>
+                                    <MenuItem class="segmentation-period-list-item" key={2}>Week</MenuItem>
+                                    <MenuItem class="segmentation-period-list-item" key={3}>Month</MenuItem>
+                                </DropdownButton>
+                            </ButtonGroup>
+                            <IconButton class="segmentation-compare-icon" data-tip data-for="compare-icon" onTouchTap={this.handleTouchTap} touch={true}>
+                                <CompareIcon/>
+                            </IconButton>
+                            <ReactTooltip id='compare-icon' place="bottom" effect='solid'>
+                                <span>{"Compare"}</span>
+                            </ReactTooltip>
+                        </div>
 
                     </div>
                     <div class="segmentation-chart-filter">
@@ -212,7 +217,6 @@ class Segementation extends Component {
                     <div class="segmentation-date-range">
                         <DateRange ranges={defaultRanges} onInit={this.handleChange.bind(this, 'rangePicker')} onChange={this.handleChange.bind(this, 'rangePicker')}/>
                     </div>
-                    {/* <canvas id="segmentationChart" width="400px" height="400px"></canvas> */}
                 </div>
                 <div class="segmentation-chart">
                     <canvas id="segmentationChart" width="400px" height="400px"></canvas>
@@ -234,7 +238,7 @@ class Segementation extends Component {
                     horizontal: 'left',
                     vertical: 'top'
                 }} onRequestClose={this.handleRequestClose}>
-                    <SelectField maxHeight={200} multiple={true} hintText="Select a name" value={values} onChange={this.handleCompareListChange}>
+                    <SelectField maxHeight={200} multiple={true} hintText="Select Events" value={values} onChange={this.handleCompareListChange}>
                         {this.menuItems(values)}
 
                     </SelectField>
