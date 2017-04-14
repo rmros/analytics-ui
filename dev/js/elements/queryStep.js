@@ -43,7 +43,19 @@ class QueryStep extends Component {
             );
         });
         return allQueryList;
-
+    }
+    renderProperties() {
+        const properties = [
+            'Browser',
+            'IP Adderss',
+            'City',
+            'Region',
+            'Country',
+            'Location'
+        ]
+        return properties.map((property, i) => {
+            return (<option value={property} key={i}/>)
+        })
     }
     render() {
         const allEventList = this.renderAllEventList();
@@ -52,10 +64,8 @@ class QueryStep extends Component {
 
             <div class="fs-body">
                 <div class="fs-selection-row">
-                    <input class="form-control fs-select-event" placeholder="Select Event" type="text" list="eventsName"/>
-                    <datalist id="eventsName">
-                        {allEventList}
-                    </datalist>
+                    <input class="form-control fs-select-event" placeholder="Select Property" type="text" list="properties"/>
+                    <datalist id="properties">{this.renderProperties()}</datalist>
                     <i class="ion ion-ios-arrow-forward query_right_icon"></i>
 
                     <ButtonGroup vertical>
