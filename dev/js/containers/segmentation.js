@@ -9,21 +9,17 @@ import {DateRange, defaultRanges} from 'react-date-range';
 import ReactTooltip from 'react-tooltip';
 import {fetchAllEvents} from '../actions/index';
 import CompareIcon from 'material-ui/svg-icons/action/compare-arrows';
-import {IconButton, Popover, Menu, MenuItem, SelectField} from 'material-ui';
-import {tableData, chartData} from '../fakeAPI'
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder'
-];
+import {
+    IconButton,
+    Popover,
+    Menu,
+    MenuItem,
+    SelectField,
+    DropDownMenu
+} from 'material-ui';
+import {tableData} from '../fakeAPI'
+import {filterColors, chartFillColors} from '../util'
 
 class Segementation extends Component {
     constructor(props) {
@@ -34,13 +30,12 @@ class Segementation extends Component {
             rangePicker: {},
             andQuerySelected: true,
             open: false,
-            values: []
-
+            values: [],
+            value: 1
         };
     }
 
     handleTouchTap = (event) => {
-        // This prevents ghost click.
         event.preventDefault();
 
         this.setState({open: true, anchorEl: event.currentTarget});
@@ -49,16 +44,99 @@ class Segementation extends Component {
     handleRequestClose = () => {
         this.setState({open: false});
     };
+    randomLabels() {
+        let labels = [];
+        // let daysEvents = this.props.day;
+        // let weeksEvents = this.props.week;
+        // let monthsEvents = this.props.month;
+        // console.log('days', daysEvents);
+        let {periodEvents} = this.state;
+        if (periodEvents)
+            for (let i = 0; i < periodEvents.length; i++) {
+                let date = new Date(parseInt(periodEvents[i].day))
+                var month = [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+                ];
+                var str = month[date.getMonth()] + ' ' + date.getDate();
+                labels.push(str);
+            }
+        return labels;
+    }
+
+    randomDataset() {
+        let datasets = [],
+            data = [];
+        // let daysEvents = this.props.day;
+        let {periodEvents} = this.state
+        if (periodEvents)
+            for (let j = 0; j < 12; j++) {
+                for (let i = 0; i < periodEvents.length; i++) {
+                    if (periodEvents[i].events[j])
+                        data.push(periodEvents[i].events[j].object.length);
+                    }
+                datasets.push({
+                    label: 'View ' + (j + 1),
+                    data: data,
+                    backgroundColor: chartFillColors[j],
+                    borderColor: filterColors[j],
+                    fill: false,
+                    lineTension: '0.1',
+                    borderWidth: 1
+                });
+                data = [];
+            }
+        return datasets;
+    }
+
+    handleChange2 = (event, index, value) => this.setState({value});
+
     componentDidUpdate() {
+        if (!this.state.periodEvents && this.props.day) {
+            this.state.periodEvents = this.props.day;
+            this.setState(this.state);
+        }
+        const chartData = {
+            labels: this.randomLabels(),
+            datasets: this.randomDataset()
+        };
+        var ctx = $("#segmentationChart");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
+                }
+            }
+        });
         $('.segmentation-event-list-item').click(function() {
             console.log('clicked');
             $('#segmentation-event-dropdown').text($(this).text());
         });
 
-        $('.segmentation-chart-filter').children().find('.checkbox-design').each(function() {
-            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        $('.segmentation-chart-filter').children().find('.checkbox-design').each(function(i) {
+            //            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
-            $(this).css("background-color", "#" + randomColor);
+            $(this).css("background-color", filterColors[i]);
         });
 
         $('.segmentation-chart-filter-item').click(function() {
@@ -67,6 +145,10 @@ class Segementation extends Component {
     }
 
     componentDidMount() {
+        const chartData = {
+            labels: this.randomLabels(),
+            datasets: this.randomDataset()
+        };
         this.addQueryStep();
         $('.segmentation-chart-filter').children().find('.checkbox-design').each(function() {
             let randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -145,6 +227,15 @@ class Segementation extends Component {
             return allEvents;
         }
     }
+    handlePeriodChange(type) {
+        if (type === 'day')
+            this.state.periodEvents = this.props.day;
+        else if (type === 'week')
+            this.state.periodEvents = this.props.week;
+        else if (type === 'month')
+            this.state.periodEvents = this.props.month;
+        this.setState(this.state);
+    }
 
     deleteQueryStep(index) {
         console.log(index);
@@ -198,12 +289,21 @@ class Segementation extends Component {
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['startDate'] && this.state.rangePicker['startDate'].format(format).toString()}/>
                         <input class="segmentation-date-range-field" type='text' readOnly value={this.state.rangePicker['endDate'] && this.state.rangePicker['endDate'].format(format).toString()}/>
                         <button class="btn btn-primary segmentation-done-btn">Done</button>
-                        <IconButton class="segmentation-compare-icon" data-tip data-for="compare-icon" onTouchTap={this.handleTouchTap} touch={true}>
-                            <CompareIcon/>
-                        </IconButton>
-                        <ReactTooltip id='compare-icon' place="bottom" effect='solid'>
-                            <span>{"Compare"}</span>
-                        </ReactTooltip>
+                        <div class="segmentation-chart-options">
+                            <ButtonGroup vertical>
+                                <DropdownButton title="Day" id="segmentation-period-dropdown">
+                                    <MenuItem class="segmentation-period-list-item" key={1} onClick={this.handlePeriodChange.bind(this, 'day')}>Day</MenuItem>
+                                    <MenuItem class="segmentation-period-list-item" key={2} onClick={this.handlePeriodChange.bind(this, 'week')}>Week</MenuItem>
+                                    <MenuItem class="segmentation-period-list-item" key={3} onClick={this.handlePeriodChange.bind(this, 'month')}>Month</MenuItem>
+                                </DropdownButton>
+                            </ButtonGroup>
+                            <IconButton class="segmentation-compare-icon" data-tip data-for="compare-icon" onTouchTap={this.handleTouchTap} touch={true}>
+                                <CompareIcon/>
+                            </IconButton>
+                            <ReactTooltip id='compare-icon' place="bottom" effect='solid'>
+                                <span>{"Compare"}</span>
+                            </ReactTooltip>
+                        </div>
 
                     </div>
                     <div class="segmentation-chart-filter">
@@ -212,7 +312,6 @@ class Segementation extends Component {
                     <div class="segmentation-date-range">
                         <DateRange ranges={defaultRanges} onInit={this.handleChange.bind(this, 'rangePicker')} onChange={this.handleChange.bind(this, 'rangePicker')}/>
                     </div>
-                    {/* <canvas id="segmentationChart" width="400px" height="400px"></canvas> */}
                 </div>
                 <div class="segmentation-chart">
                     <canvas id="segmentationChart" width="400px" height="400px"></canvas>
@@ -234,7 +333,7 @@ class Segementation extends Component {
                     horizontal: 'left',
                     vertical: 'top'
                 }} onRequestClose={this.handleRequestClose}>
-                    <SelectField maxHeight={200} multiple={true} hintText="Select a name" value={values} onChange={this.handleCompareListChange}>
+                    <SelectField maxHeight={200} multiple={true} hintText="Select Events" value={values} onChange={this.handleCompareListChange}>
                         {this.menuItems(values)}
 
                     </SelectField>
@@ -247,7 +346,16 @@ class Segementation extends Component {
 }
 function mapStateToProps(state) {
     const {allEvents, appInitSuccess, init, fetchingEvents} = state.events;
-    return {allEvents: allEvents, appInitSuccess: appInitSuccess, fetchingEvents: fetchingEvents, init: init};
+    const {day, week, month} = state.groupedEvents;
+    return {
+        allEvents: allEvents,
+        appInitSuccess: appInitSuccess,
+        fetchingEvents: fetchingEvents,
+        init: init,
+        day: day,
+        week: week,
+        month: month
+    };
 }
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({

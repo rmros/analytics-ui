@@ -1,3 +1,4 @@
+import {filterColors, chartFillColors} from '../util'
 export const tableData = [
     {
         distinctId: 1,
@@ -142,62 +143,35 @@ export const tableData = [
     }
 ];
 
-export const chartData = {
-    labels: [
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 ",
-        "Feb 1 "
-    ],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [
-                0,
-                0,
-                2,
-                0,
-                0,
-                0,
-                0,
-                1,
-                0,
-                0,
-                0,
-                0,
-                1,
-                0,
-                3,
-                0,
-                0,
-                0,
-                0,
-                2,
-                0,
-                0
-            ],
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            fill: false,
-            lineTension: '0'
+function randomLabels() {
+    let labels = [];
+    for (let i = 0; i < 22; i++) {
+        labels.push("Apr " + Math.ceil(Math.random() * 30));
+    }
+    return labels;
+}
+
+function randomDataset() {
+    let datasets = [],
+        data = [];
+    for (let j = 0; j < 12; j++) {
+        for (let i = 0; i < 22; i++) {
+            data.push(Math.floor(Math.random() * 10));
         }
-    ]
+        datasets.push({
+            label: 'View ' + (j + 1),
+            data: data,
+            backgroundColor: chartFillColors[j],
+            borderColor: filterColors[j],
+            fill: false,
+            lineTension: '0.1',
+            borderWidth: 1
+        });
+        data = [];
+    }
+    return datasets;
+}
+export const chartData = {
+    labels: randomLabels(),
+    datasets: randomDataset()
 };

@@ -46,6 +46,7 @@ export const initApp = (appId) => {
                                 userProfilePic: userProfilePic
                             }
                         });
+                        dispatch(groupAllEvents())
                     }
                 });
             }, (err) => {
@@ -81,25 +82,58 @@ export const fetchAllEvents = () => {
 export const groupAllEvents = () => {
     return ((dispatch) => {
 
-        var query = new CB.CloudQuery("_Event");
+        var query = new CB.CloudQuery("_Event")
+        query.limit = 9999999;
         query.find({
             success: function(data) {
                 var documentArr = _.pluck(data, 'document');
                 var groupedByDay = groupByTime(documentArr, 'createdAt', 'day');
                 var groupedByMonth = groupByTime(documentArr, 'createdAt', 'month');
                 var groupedByWeek = groupByTime(documentArr, 'createdAt', 'week');
+                var groupedEventsByDay = [];
+                let days = (_.keys(groupedByDay));
+                let eventsPerDay = ((_.values(groupedByDay)));
+                eventsPerDay.forEach((event, i) => {
+                    groupedEventsByDay.push({day: days[i], events: _groupObjects(event)})
+                })
+                var groupedEventsByMonth = [];
+                let months = (_.keys(groupedByMonth));
+                let eventsPerMonth = ((_.values(groupedByMonth)));
+                eventsPerMonth.forEach((event, i) => {
+                    groupedEventsByMonth.push({day: days[i], events: _groupObjects(event)})
+                })
+                var groupedEventsByWeek = [];
+                let weeks = (_.keys(groupedByWeek));
+                let eventsPerWeek = ((_.values(groupedByWeek)));
+                eventsPerWeek.forEach((event, i) => {
+                    groupedEventsByWeek.push({day: days[i], events: _groupObjects(event)})
+                })
                 dispatch({
                     type: "GROUP_ALL_EVENTS",
                     payload: {
-                        month: groupedByMonth,
-                        day: groupedByDay,
-                        week: groupedByWeek
+                        month: groupedEventsByMonth,
+                        day: groupedEventsByDay,
+                        week: groupedEventsByWeek
                     }
                 });
             },
-            error: function(err) {
-                //Error in retrieving the data.
-            }
+            error: function(err) {}
         });
     });
+}
+
+function _groupObjects(objects) {
+    var groups = {};
+    for (var i = 0; i < objects.length; i++) {
+        var groupName = objects[i].name;
+        if (!groups[groupName]) {
+            groups[groupName] = [];
+        }
+        groups[groupName].push(objects[i]);
+    }
+    objects = [];
+    for (groupName in groups) {
+        objects.push({event: groupName, object: groups[groupName]});
+    }
+    return objects;
 }
