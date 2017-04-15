@@ -96,27 +96,24 @@ export const groupAllEvents = () => {
                 eventsPerDay.forEach((event, i) => {
                     groupedEventsByDay.push({day: days[i], events: _groupObjects(event)})
                 })
-                console.log(groupedEventsByDay);
                 var groupedEventsByMonth = [];
                 let months = (_.keys(groupedByMonth));
                 let eventsPerMonth = ((_.values(groupedByMonth)));
                 eventsPerMonth.forEach((event, i) => {
                     groupedEventsByMonth.push({day: days[i], events: _groupObjects(event)})
                 })
-                console.log(groupedEventsByMonth);
                 var groupedEventsByWeek = [];
                 let weeks = (_.keys(groupedByWeek));
-                let eventsPerWeek = ((_.values(groupedByDay)));
+                let eventsPerWeek = ((_.values(groupedByWeek)));
                 eventsPerWeek.forEach((event, i) => {
                     groupedEventsByWeek.push({day: days[i], events: _groupObjects(event)})
                 })
-                console.log(groupedEventsByWeek);
                 dispatch({
                     type: "GROUP_ALL_EVENTS",
                     payload: {
-                        month: groupedByMonth,
-                        day: groupedByDay,
-                        week: groupedByWeek
+                        month: groupedEventsByMonth,
+                        day: groupedEventsByDay,
+                        week: groupedEventsByWeek
                     }
                 });
             },
@@ -135,7 +132,7 @@ function _groupObjects(objects) {
         groups[groupName].push(objects[i]);
     }
     objects = [];
-    for (var groupName in groups) {
+    for (groupName in groups) {
         objects.push({event: groupName, object: groups[groupName]});
     }
     return objects;
