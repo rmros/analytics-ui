@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from "react-router";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import QueryStep from '../elements/queryStep.js';
+import {tableData} from '../fakeAPI'
 
 class BSTable extends React.Component {
     render() {
@@ -71,149 +72,7 @@ class LiveView extends Component {
     }
 
     render() {
-        const tableData = [
-            {
-                distinctId: 1,
-                event: "Visited : Home Page",
-                browser: 'Chrome',
-                city: "New Delhi",
-                country: "India",
-                time: "13 min. ago",
-                expand: [
-                    {
-                        fieldA: 'browser : Chrome',
-                        fieldB: 'OS : MAC OS X',
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 2,
-                event: "Visited : Sign Up Page",
-                browser: 'Firefox',
-                city: "New Delhi",
-                country: "India",
-                time: "11 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 3,
-                event: "Visited : Pricing Page",
-                browser: 'Safari',
-                city: "New Delhi",
-                country: "India",
-                time: "13 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 4,
-                event: "Visited : Consulting Page",
-                browser: 'Edge',
-                city: "New Delhi",
-                country: "India",
-                time: "1 day ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 5,
-                event: "Visited : Compare Page",
-                browser: 'IE',
-                city: "New Delhi",
-                country: "India",
-                time: "3 sec. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 6,
-                event: "Visited : Home Page",
-                browser: 'Chrome',
-                city: "New Delhi",
-                country: "India",
-                time: "5 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }, {
-                distinctId: 7,
-                event: "Visited : Home Page",
-                browser: 'unknown',
-                city: "New Delhi",
-                country: "India",
-                time: "13 min. ago",
-                expand: [
-                    {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }, {
-                        fieldA: 'test1',
-                        fieldB: 99,
-                        fieldC: Math.random() * 100,
-                        fieldD: '123eedd'
-                    }
-                ]
-            }
-        ];
+
         const options = {
             noDataText: 'No Events Found!!'
         }

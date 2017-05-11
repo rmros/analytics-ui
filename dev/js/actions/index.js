@@ -29,6 +29,9 @@ export const initApp = (appId) => {
                                 return obj.appId == appId;
                             });
                         }
+                        if (app.length === 0)
+                            window.location.href = ANALYTICS_URL + availableApps[0].appId
+
                         console.log('app', app);
                         if (__isHosted == "true" || __isHosted == true) {
                             CB.CloudApp.init(appId, app[0].keys.master)
