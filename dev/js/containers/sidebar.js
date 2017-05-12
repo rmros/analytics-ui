@@ -9,8 +9,13 @@ class SideBar extends Component {
         super(props);
         this.state = {};
     }
+    static get contextTypes() {
+        return {router: React.PropTypes.object.isRequired}
+    }
     navigate(route) {
-        browserHistory.push(route);
+        browserHistory.push('/irqawdsyuqoq/' + route);
+        // this.context.router.push('/irqawdsyuqoq/' + route)
+
     }
 
     render() {

@@ -38,12 +38,13 @@ ReactDOM.render(
     <MuiThemeProvider muiTheme={muiTheme}>
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={App}>
-                <Route path="/:appId">
-                    <IndexRoute component={Segmentation}></IndexRoute>
-                </Route>
+            <Route path=":appId" component={App}>
+                <IndexRoute component={Segmentation}/>
+                <Route path='funnel' component={Funnel}></Route>
+                <Route path='segmentation' component={Segmentation}></Route>
+                <Route path='live' component={LiveView}></Route>
             </Route>
-            <Route path="*" component={App}></Route>
+            <Route path="/" component={App}/>
         </Router>
     </Provider>
 </MuiThemeProvider>, document.getElementById('root'));
