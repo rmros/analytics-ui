@@ -55,6 +55,22 @@ ul {
     background: white;
 }
 
+.app-list-item.selected-app {
+    background: #fafafa!important;
+    color: black!important
+}
+
+.app-list-item {
+    border-bottom: 1px solid #f3f7fd!important;
+    border-top: 1px solid #f3f7fd!important;
+    color: #858585!important;
+}
+
+.app-selector-img {
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
 .navbar-border {
     border-bottom: 1px solid rgba(84, 154, 252, 0.23);
 }
@@ -99,7 +115,6 @@ ul {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-bottom: 20px;
 }
 
 .selected-app {
@@ -538,8 +553,8 @@ LiveView Styling ends
 */
 
 .dropdown-menu {
-    height: 200px;
-    overflow-y: scroll;
+    /*height: 200px;
+    overflow-y: scroll;*/
 }
 
 
