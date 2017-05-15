@@ -8,6 +8,8 @@ import {Navbar, Nav, NavItem, NavDropdown, Dropdown} from 'react-bootstrap';
 
 import {IconButton, MenuItem, Menu, Popover, DropDownMenu} from 'material-ui'
 import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
+import DownArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
+import _ from 'underscore'
 
 class App extends React.Component {
     constructor(props)
@@ -16,7 +18,8 @@ class App extends React.Component {
         this.props.initApp('' + window.location.pathname.split('/')[1]);
         this.state = {
             scroll: {},
-            open: false
+            open: false,
+            value: 1
         };
 
     }
@@ -40,29 +43,45 @@ class App extends React.Component {
         }
     }
 
+    handleChange = (event, index, value) => this.setState({value});
+
     componentWillReceiveProps(nextProps) {
         if (this.props.init !== nextProps.init)
             this.props.fetchAllEvents();
 
         }
+    setImgFallbackUrl(e) {
+        e.target.onError = null;
+        e.target.src = '/assets/img/default-app-icon.png';
+    }
 
     render() {
+        let value = 0
+        if (this.props.allApps) {
+            value = _.pluck(this.props.allApps, 'id').indexOf(this.props.appId);
+        }
+
         let allApps = '';
         const thisObj = this;
 
         if (this.props.allApps) {
             allApps = this.props.allApps.map((app, i) => {
-                if (app.id != thisObj.props.appId)
-                    return (
-                        <MenuItem class={app.id == thisObj.props.appId
-                            ? 'selected-app'
-                            : ''} key={i} onClick={this.navigate.bind(this, '/' + app.id, true)}>
-                            <i class="ion ion-android-cloud-outline dashboard-icon "></i>
-                            &nbsp;{app.name}
-                        </MenuItem>
-                    );
-                }
-            )
+                let label = (
+                    <div>
+                        <img height="20px" class="app-selector-img" src={SERVER_URL + '/appfile/' + app.id + '/icon'} onError={this.setImgFallbackUrl.bind(this)}></img>
+                        {app.name}</div>
+                );
+                return (
+                    <MenuItem className={app.id === thisObj.props.appId
+                        ? 'selected-app app-list-item'
+                        : 'app-list-item'} innerDivStyle={{
+                        "display": "inline-flex",
+                        "alignItems": "center"
+                    }} value={i} primaryText={app.name} key={i} onClick={this.navigate.bind(this, '/' + app.id, true)} label={label}>
+                        <img height="20px" class="app-selector-img" src={SERVER_URL + '/appfile/' + app.id + '/icon'} onError={this.setImgFallbackUrl.bind(this)}></img>
+                    </MenuItem>
+                );
+            })
         }
         let profilePic = <i class="ion ion-person profile-icon"></i>
         if (this.props.userProfilePic) {
@@ -86,25 +105,35 @@ class App extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <NavDropdown class='appid-menuitem' eventKey={3} title={myAppsTitle} id="basic-nav-dropdown">
-                                <li role="presentation" class="myApps-heading">My Apps</li>
-
+                            <DropDownMenu value={value} onChange={this.handleChange} underlineStyle={{
+                                display: "none"
+                            }} listStyle={{
+                                'paddingTop': '0px',
+                                'paddingBottom': '0px'
+                            }} iconButton={< DownArrow />}>
                                 {allApps}
-                                <MenuItem divider/>
-                                <MenuItem key={4} href={DASHBOARD_URL}>
-                                    <i class="ion ion-android-apps dashboard-icon "></i>
-                                    &nbsp; Dashboard</MenuItem>
-                            </NavDropdown>
 
+                                <MenuItem innerDivStyle={{
+                                    "display": "inline-flex",
+                                    "alignItems": "center"
+                                }} primaryText={'Dashboard'} key={9999} onClick={this.navigate.bind(this, DASHBOARD_URL, false)}>
+                                    <img height="20px" class="app-selector-img" src={'/assets/img/dashboard-icon.png'}></img>
+                                </MenuItem>
+                            </DropDownMenu>
                         </Nav>
                         <Nav pullRight>
+                            <NavItem href={DASHBOARD_URL} class='dashboard-menuitem' onClick={this.navigate.bind(this, DASHBOARD_URL, false)}>
+                                <i class="ion ion-android-apps dashboard-icon"></i>
+                                &nbsp; Dashboard
+                            </NavItem>
+                            <NavDropdown eventKey={3} title={profilePic} id="basic-nav-dropdown" class="profile">
 
-                            <IconButton touch={true}>
-                                <DashboardIcon/>
-                            </IconButton>
-                            <IconButton touch={true}>
-                                <img src={this.props.userProfilePic} class="profilePic" onTouchTap={this.handleTouchTap}></img>
-                            </IconButton>
+                                <MenuItem key={1} href={DASHBOARD_URL + '/#/profile'}>
+                                    Profile
+                                </MenuItem>
+
+                            </NavDropdown>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
